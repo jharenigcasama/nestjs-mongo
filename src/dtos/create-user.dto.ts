@@ -13,6 +13,7 @@ export class CreateUserDto{
     @ApiProperty()
     @IsNotEmpty()
     address : {
+       
         main : string,
         work : string
     };
