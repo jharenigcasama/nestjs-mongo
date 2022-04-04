@@ -29,4 +29,12 @@ export class CreateUserDto{
         mobile : string,
         telephone : string
     }
+
+    @ApiProperty()
+    @IsNotEmpty()
+    username : string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    password : string;
 }
