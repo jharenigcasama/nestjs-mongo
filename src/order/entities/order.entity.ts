@@ -1,32 +1,20 @@
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from "mongoose";
+import { PurchasedItem } from "src/purchased_item/entities/purchased_item.entity";
+import { User } from "src/user/user.model";
 
-export const OrderSchema = new mongoose.Schema({
-   itemid :{
-       type : [Array]
-   },
-   customer : {
-    type : String,
-    required : true
-    },
-    quantity : {
-        type : Number,
-        required : true,
-        default : 0
-    }, 
-   createdAt : {
-       type: Date,
-       default : Date.now
-   },
+export type OrderDocument = Order & Document;
+
+@Schema()
+export class Order{
+    @Prop({type: mongoose.Schema.Types.ObjectId, ref : 'PurchasedItem'})
+    item_purchased: PurchasedItem
   
-});
-
-
-
-
-export interface Order{
-    item : [Array<String>];
-    customer : string;
-    quantity : number;
-    createdAt : Date;
-    
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref : 'User' })
+    customer : User;
+  
+    @Prop({ required: true })
+    createdAt: Date;
 }
+
+export const OrderSchema = SchemaFactory.createForClass(Order);

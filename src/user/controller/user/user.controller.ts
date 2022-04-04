@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { JwtuAuthGuard } from 'src/auth/utils/jwt-auth.guard';
 import { CreateUserDto } from 'src/dtos/create-user.dto';
 import { UpdateUserDto } from 'src/dtos/update-user.dto';
 import { UserService } from 'src/user/service/user/user.service';
@@ -14,9 +15,9 @@ export class UserController {
        console.log(age);
        console.log(contact);
 
-        return this.userService.insertNewUser(fname, lname, address, age, contact); 
+        return this.userService.insertNewUser(createUser); 
     }
-
+    // @UseGuards(JwtuAuthGuard)
     @Get('')
     getUser(){
         return this.userService.getUsers();

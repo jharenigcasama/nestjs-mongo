@@ -28,6 +28,8 @@ export const UserSchema = new mongoose.Schema({
        mobile: {type: String},
     telephone : {type : String},
     },
+    username : {type : String, required : true},
+    password : {type : String, required : true}
 
 
 });
@@ -38,5 +40,7 @@ export interface User{
     address : string;
     age : number;
     contact : string;
+    username : string;
+    password : string;
 
 }

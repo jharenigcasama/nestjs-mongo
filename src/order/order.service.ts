@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './entities/order.entity';
+import { Order, OrderDocument } from './entities/order.entity';
 import {  Model } from 'mongoose'; 
 
 @Injectable()
 export class OrderService {
-  constructor(@InjectModel('Orders') private readonly ordersModel : Model<Order> ){}
+  constructor(@InjectModel(Order.name) private readonly ordersModel : Model<OrderDocument> ){}
   
   private orders : Order[] = [];
 
